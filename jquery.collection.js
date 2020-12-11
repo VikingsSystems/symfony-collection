@@ -505,7 +505,7 @@
         // "duplicate" button, all element values are then inserted. finally, callbacks let user cancel
         // those actions if needed.
         var doAdd = function (container, that, collection, settings, elements, element, index, isDuplicate) {
-            if (elements.length < settings.max && (isDuplicate && trueOrUndefined(settings.before_duplicate(collection, element)) || trueOrUndefined(settings.before_add(collection, element)))) {
+            if (elements.length < settings.max && (isDuplicate && trueOrUndefined(settings.before_duplicate(collection, element, that)) || trueOrUndefined(settings.before_add(collection, element, that)))) {
                 var prototype = collection.data('prototype');
                 var freeIndex = collection.data('collection-offset');
 
@@ -570,7 +570,7 @@
 
                 enableChildrenCollections(collection, code, settings);
 
-                if ((isDuplicate && !trueOrUndefined(settings.after_duplicate(collection, code))) || !trueOrUndefined(settings.after_add(collection, code))) {
+                if ((isDuplicate && !trueOrUndefined(settings.after_duplicate(collection, code))) || !trueOrUndefined(settings.after_add(collection, code, that))) {
                     if (index !== -1) {
                         elements = shiftElementsUp(collection, elements, settings, index + 1);
                     }
