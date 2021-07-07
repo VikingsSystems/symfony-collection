@@ -595,8 +595,8 @@
 
         // removes the current element when clicking on a "delete" button and decrease all following
         // indexes from 1 position.
-        var doDelete = function (collection, settings, elements, element, index) {
-            if (elements.length > settings.min && trueOrUndefined(settings.before_remove(collection, element))) {
+        var doDelete = function (collection, that, settings, elements, element, index) {
+            if (elements.length > settings.min && trueOrUndefined(settings.before_remove(collection, element, that))) {
                 var deletion = function () {
                     var toDelete = element;
                     if (!settings.preserve_names) {
@@ -943,7 +943,7 @@
 
                     if (that.is('.' + settings.prefix + '-remove') && settings.allow_remove) {
                         event = 'remove';
-                        elements = doDelete(collection, settings, elements, element, index);
+                        elements = doDelete(collection, that, settings, elements, element, index);
                     }
 
                     if (that.is('.' + settings.prefix + '-up') && settings.allow_up) {
